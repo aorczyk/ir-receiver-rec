@@ -112,9 +112,26 @@ function processSignal(){
         }
 
         if (test){
-            basic.showNumber(i)
+            runOnSignal(i)
         } else {
             continue;
         }
+    }
+}
+
+// Runs the command when the recorded signal appears.
+
+function runOnSignal(signalId: number){
+    basic.showNumber(signalId)
+
+    if (signalId == 0){
+        basic.clearScreen()
+        music.playSoundEffect(music.createSoundEffect(WaveShape.Square, 1600, 1, 255, 0, 300, SoundExpressionEffect.None, InterpolationCurve.Curve), SoundExpressionPlayMode.UntilDone)
+    } else if (signalId == 1) {
+        basic.showIcon(IconNames.Heart)
+        music.playSoundEffect(music.createSoundEffect(WaveShape.Noise, 54, 54, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), SoundExpressionPlayMode.UntilDone)
+    } else if (signalId == 2) {
+        basic.showIcon(IconNames.House)
+        music.playSoundEffect(music.createSoundEffect(WaveShape.Square, 400, 600, 255, 0, 100, SoundExpressionEffect.Warble, InterpolationCurve.Linear), SoundExpressionPlayMode.UntilDone)
     }
 }
